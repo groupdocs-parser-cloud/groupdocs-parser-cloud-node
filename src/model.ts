@@ -1027,6 +1027,26 @@ export class Image {
             name: "downloadUrl",
             baseName: "downloadUrl",
             type: "string",
+        },        
+        {
+            name: "pageIndex",
+            baseName: "pageIndex",
+            type: "number",
+        },        
+        {
+            name: "rotation",
+            baseName: "rotation",
+            type: "number",
+        },        
+        {
+            name: "fileFormat",
+            baseName: "fileFormat",
+            type: "string",
+        },        
+        {
+            name: "rectangle",
+            baseName: "rectangle",
+            type: "Rectangle",
         }    ];
 
     /**
@@ -1045,6 +1065,26 @@ export class Image {
      * Gets or sets the image download URL.
      */
     public downloadUrl: string;
+    
+    /**
+     * Gets or sets the index of the page.
+     */
+    public pageIndex: number;
+    
+    /**
+     * Gets or sets the rotation of the image in degrees.
+     */
+    public rotation: number;
+    
+    /**
+     * Gets or sets the image file format.
+     */
+    public fileFormat: string;
+    
+    /**
+     * Gets or sets the rectangle area of the image.
+     */
+    public rectangle: Rectangle;
     
     public constructor(init?: Partial<Image>) {
         
@@ -1161,6 +1201,11 @@ export class InfoResult {
             name: "pageCount",
             baseName: "pageCount",
             type: "number",
+        },        
+        {
+            name: "encoding",
+            baseName: "encoding",
+            type: "string",
         }    ];
 
     /**
@@ -1184,6 +1229,11 @@ export class InfoResult {
      * Gets or sets the total number of document pages.
      */
     public pageCount: number;
+    
+    /**
+     * Gets or sets the encoding.
+     */
+    public encoding: string;
     
     public constructor(init?: Partial<InfoResult>) {
         
