@@ -39,6 +39,11 @@ export class TestFile {
         public static Pdf: TestFile = new TestFile("template-document.pdf", "pdf\\");
         public static PdfContainer: TestFile = new TestFile("PDF with attachements.pdf", "pdf\\", "password");
 
+
+        public static Rar: TestFile = new TestFile("sample.rar", "containers\\archive\\");
+        public static Tar: TestFile = new TestFile("sample.tar", "containers\\archive\\");
+        public static Md: TestFile = new TestFile("sample.md", "words\\docx\\");
+
         public static NotExist: TestFile = new TestFile("file-not-exist.pdf", "folder\\");
 
 
@@ -99,7 +104,10 @@ export class TestFile {
                 TestFile.JpegFile,
                 TestFile.ImageAndAttachment,
                 TestFile.Pdf,
-                TestFile.PdfContainer
+                TestFile.PdfContainer,
+                TestFile.Rar,
+                TestFile.Tar,
+                TestFile.Md
         ];
     }
 }

@@ -66,6 +66,44 @@ describe("test_parser_container_api",
                             });
                     });
 
+                it("TestGetContainerItemInfo_rar",
+                    () => {
+                        const containerOptions = new ContainerOptions();
+                        containerOptions.fileInfo = TestFile.Rar.ToFileInfo();
+                        const request = new ContainerRequest(containerOptions);
+                        return TestContext.getInfoApi().container(request)
+                            .then((result) => {
+                                expect(result).not.to.be.null;
+                                expect(result.containerItems).not.to.be.empty;
+                                expect(result.containerItems.length).equal(2);
+                                var names: string[] = [
+                                    "sample.docx", "sample.pdf"
+                                ];
+                                result.containerItems.forEach((item) => {
+                                    expect(names.some(x => item.name.includes(x))).to.be.true;
+                                });
+                            });
+                    });
+
+                it("TestGetContainerItemInfo_tar",
+                    () => {
+                        const containerOptions = new ContainerOptions();
+                        containerOptions.fileInfo = TestFile.Tar.ToFileInfo();
+                        const request = new ContainerRequest(containerOptions);
+                        return TestContext.getInfoApi().container(request)
+                            .then((result) => {
+                                expect(result).not.to.be.null;
+                                expect(result.containerItems).not.to.be.empty;
+                                expect(result.containerItems.length).equal(5);
+                                var names: string[] = [
+                                    "sample.docx", "sample.pdf", "1200px-RedPandaFullBody.JPG", "images.pdf", "th.jpg"
+                                ];
+                                result.containerItems.forEach((item) => {
+                                    expect(names.some(x => item.name.includes(x))).to.be.true;
+                                });
+                            });
+                    });
+
                 it("TestGetContainerItemInfo_FileNotFoundResult",
                     () => {
                         const containerOptions = new ContainerOptions();

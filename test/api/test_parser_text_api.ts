@@ -59,6 +59,18 @@ describe("test_parser_text_api",
                             });
                     });
 
+                it("TestExtractText_md",
+                    () => {
+                        const textOptions = new TextOptions();
+                        textOptions.fileInfo = TestFile.Md.ToFileInfo();
+                        const request = new TextRequest(textOptions);
+                        return TestContext.getParseApi().text(request)
+                            .then((result) => {
+                                expect(result.text).not.to.be.null;
+                                expect(result.text).to.have.string("# Test\r\rText for test:\r\r\tOne\r\tTwo\r\tSub1\rSub2\r\tThree\r\rBullets:\r\rA\rAA\rB\rC\f");
+                            });
+                    });
+
                 it("TestExtractText_WithPassword",
                     () => {
                         const textOptions = new TextOptions({
