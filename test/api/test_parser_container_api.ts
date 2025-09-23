@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose Pty Ltd">
-//  Copyright (c) 2003-2019 Aspose Pty Ltd
+//  Copyright (c) Aspose Pty Ltd
 // </copyright>
 // <summary>
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -121,13 +121,13 @@ describe("test_parser_container_api",
                 it("GetContainerItemsInfo_UnsupportedFileType",
                     () => {
                         const containerOptions = new ContainerOptions();
-                        containerOptions.fileInfo = TestFile.FourPages.ToFileInfo();
+                        containerOptions.fileInfo = TestFile.Video.ToFileInfo();
                         const request = new ContainerRequest(containerOptions);
                         try {
                             TestContext.getInfoApi().container(request);
                         } catch (e) {
                             expect(e.message).equal(
-                                "Password provided for file \'words\\docx\\four-pages.docx\' is incorrect.");
+                                "Password provided for file \'video\\avi\\sample.avi\' is incorrect.");
                         }
                     });
 

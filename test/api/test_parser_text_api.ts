@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose Pty Ltd">
-//  Copyright (c) 2003-2019 Aspose Pty Ltd
+//  Copyright (c) Aspose Pty Ltd
 // </copyright>
 // <summary>
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -86,7 +86,7 @@ describe("test_parser_text_api",
                         return TestContext.getParseApi().text(request)
                             .then((result) => {
                                 expect(result.text).to.be.null;
-                                expect(result.pages[0].text).to.have.string("Text inside a bookmark 1\r\n\r\nPage 1 heading!\r\n\r\nSample test text - Page 1!\r\n\r\n\fText inside a bookmark 2\r\n\r\n");
+                                expect(result.pages[0].text).to.have.string("Text inside a bookmark 1\n\nPage 1 heading!\n\nSample test text - Page 1!\n\n\fText inside a bookmark 2\n\n");
                             });
                     });
 
@@ -106,9 +106,9 @@ describe("test_parser_text_api",
                             .then((result) => {
                                 expect(result.pages).not.to.be.null;
                                 expect(result.pages[0].pageIndex).equal(0);
-                                expect(result.pages[0].text).to.have.string("Text inside bookmark 0\r\n\r\nPage 0 heading\r\n\r\nPage Text - Page 0\r\n\r\n\fText inside bookmark 1\r\n\r\n");
+                                expect(result.pages[0].text).to.have.string("Text inside bookmark 0\n\nPage 0 heading\n\nPage Text - Page 0\n\n\fText inside bookmark 1\n\n");
                                 expect(result.pages[3].pageIndex).equal(3);
-                                expect(result.pages[3].text).to.have.string("\fText inside bookmark 3\r\n\r\nPage 3 heading\r\n\r\nPage Text - Page 3\r\n\r\n");
+                                expect(result.pages[3].text).to.have.string("\fText inside bookmark 3\n\nPage 3 heading\n\nPage Text - Page 3\n\n");
                             });
                     });
 

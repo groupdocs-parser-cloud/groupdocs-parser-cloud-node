@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,149 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+
+/**
+ * Represents an barcode.
+ */
+export class Barcode {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "codeTypeName",
+            baseName: "codeTypeName",
+            type: "string",
+        },        
+        {
+            name: "page",
+            baseName: "page",
+            type: "BarcodePage",
+        },        
+        {
+            name: "rectangle",
+            baseName: "rectangle",
+            type: "Rectangle",
+        },        
+        {
+            name: "value",
+            baseName: "value",
+            type: "string",
+        },        
+        {
+            name: "downloadUrl",
+            baseName: "downloadUrl",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Barcode.attributeTypeMap;
+    }
+
+    /**
+     * Gets the name of the barcode type.
+     */
+    public codeTypeName: string;
+    
+    /**
+     * Gets the document page information such as page index and page size.
+     */
+    public page: BarcodePage;
+    
+    /**
+     * Gets the rectangular area.
+     */
+    public rectangle: Rectangle;
+    
+    /**
+     * Gets the barcode value.
+     */
+    public value: string;
+    
+    /**
+     * Gets or sets the barcode download URL.
+     */
+    public downloadUrl: string;
+    
+    public constructor(init?: Partial<Barcode>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+export class BarcodePage {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "index",
+            baseName: "index",
+            type: "number",
+        },        
+        {
+            name: "size",
+            baseName: "size",
+            type: "Size",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return BarcodePage.attributeTypeMap;
+    }
+
+    /**
+     * Gets the page index.
+     */
+    public index: number;
+    
+    /**
+     * Gets the page size.
+     */
+    public size: Size;
+    
+    public constructor(init?: Partial<BarcodePage>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+export class BarcodesResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "barcodes",
+            baseName: "barcodes",
+            type: "Array<Barcode>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return BarcodesResult.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets a collection of barcodes.
+     */
+    public barcodes: Array<Barcode>;
+    
+    public constructor(init?: Partial<BarcodesResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
 
 /**
  * Represents a container item like Zip archive entity, email attachment, PDF Portfolio item and so on.
@@ -2368,6 +2511,59 @@ export class TextStyle {
 }
 
 /**
+ * Barcode options.
+ */
+export class BarcodesOptions extends ParserOptions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "outputPath",
+            baseName: "outputPath",
+            type: "string",
+        },        
+        {
+            name: "startPageNumber",
+            baseName: "startPageNumber",
+            type: "number",
+        },        
+        {
+            name: "countPagesToExtract",
+            baseName: "countPagesToExtract",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(BarcodesOptions.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the output path for extracted barcodes.
+     */
+    public outputPath: string;
+    
+    /**
+     * Gets or sets the zero-based start page index.
+     */
+    public startPageNumber: number;
+    
+    /**
+     * Gets or sets the number of pages to extract.
+     */
+    public countPagesToExtract: number;
+    
+    public constructor(init?: Partial<BarcodesOptions>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Container options.
  */
 export class ContainerOptions extends ParserOptions {
@@ -2611,6 +2807,9 @@ const enumsMap = {
 };
 
 const typeMap = {
+            Barcode,
+            BarcodePage,
+            BarcodesResult,
             ContainerItem,
             ContainerItemInfo,
             ContainerResult,
@@ -2656,6 +2855,7 @@ const typeMap = {
             TextPage,
             TextResult,
             TextStyle,
+            BarcodesOptions,
             ContainerOptions,
             FileVersion,
             ImagesOptions,
@@ -2974,6 +3174,20 @@ export class GetInfoRequest {
     public options: InfoOptions;
     
     public constructor(options: InfoOptions) {        
+        this.options = options;
+    }
+}
+
+/**
+ * Request model for Barcodes operation.
+ */
+export class BarcodesRequest {
+    /**
+     * Extract barcode options.
+     */
+    public options: BarcodesOptions;
+    
+    public constructor(options: BarcodesOptions) {        
         this.options = options;
     }
 }

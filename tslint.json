@@ -7,7 +7,7 @@
     "rules": {
         "no-console": false,
         "completed-docs": [
-            true,
+            false,
             {
                 "methods": {
                     "privacies": [
@@ -15,7 +15,7 @@
                         "protected"
                     ]
                 },
-                "classes": true,
+                "classes": false,
                 "functions": true,
                 "interfaces": true,                
                 "types": true
@@ -27,7 +27,9 @@
         "array-type": false,
         "file-header": true,
         "only-arrow-functions": false,
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "ordered-imports": false,
+        "no-shadowed-variable": false
     },
     "rulesDirectory": []
 }

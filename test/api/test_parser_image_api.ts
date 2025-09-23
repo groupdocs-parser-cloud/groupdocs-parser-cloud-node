@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose Pty Ltd">
-//  Copyright (c) 2003-2019 Aspose Pty Ltd
+//  Copyright (c) Aspose Pty Ltd
 // </copyright>
 // <summary>
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -72,9 +72,9 @@ describe("test_parser_image_api",
                             .then((result) => {
                                 expect(result).not.to.be.null;
                                 var paths: string[] = [
-                                    "parser/images/containers/archive/zip-eml-jpg-pdf_zip/",
-                                    "parser/images/containers/archive/zip-eml-jpg-pdf_zip/embedded-image-and-attachment_eml/",
-                                    "parser/images/containers/archive/zip-eml-jpg-pdf_zip/template-document_pdf/"
+                                    "containers/archive/zip-eml-jpg-pdf_zip/",
+                                    "containers/archive/zip-eml-jpg-pdf_zip/embedded-image-and-attachment_eml/",
+                                    "containers/archive/zip-eml-jpg-pdf_zip/template-document_pdf/"
                                 ];
                                 result.images.forEach((image) => {
                                     expect(paths.some(x => image.path.includes(x))).to.be.true;

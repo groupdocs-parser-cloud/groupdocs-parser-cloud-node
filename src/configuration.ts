@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ export class Configuration {
     /**
      * API base URL, default is 'https://api.groupdocs.cloud'
      */
-    public apiBaseUrl: string = "https://api.groupdocs.cloud";
+    public apiBaseUrl: string = "https://api-qa.groupdocs.cloud";
 
     /**
      * Gets or sets the API version

@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -43,6 +43,7 @@ export class TestFile {
         public static Rar: TestFile = new TestFile("sample.rar", "containers\\archive\\");
         public static Tar: TestFile = new TestFile("sample.tar", "containers\\archive\\");
         public static Md: TestFile = new TestFile("sample.md", "words\\docx\\");
+        public static Video: TestFile = new TestFile("sample.avi", "video\\avi\\");
 
         public static NotExist: TestFile = new TestFile("file-not-exist.pdf", "folder\\");
 

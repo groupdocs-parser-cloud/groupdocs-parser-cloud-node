@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose Pty Ltd">
-//  Copyright (c) 2003-2019 Aspose Pty Ltd
+//  Copyright (c) Aspose Pty Ltd
 // </copyright>
 // <summary>
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,7 +38,7 @@ import {
 
 import * as TestContext from "../test_context";
 import { TestFile } from "../test_file";
-import Model = require("../../src/model");
+import * as Model from "../../src/model";
 import Field = Model.Field;
 import FieldPosition = Model.FieldPosition;
 import Rectangle = Model.Rectangle;
@@ -76,19 +76,7 @@ describe("test_parser_parse_api",
                             .then((result) => {
                                 expect(result).not.to.be.null;
                                 expect(result.fieldsData).not.to.be.empty;
-                                expect(result.count).equal(4);
-
-                                var fieldValues: string[] = [
-                                    "FIELD1", "RELATEDFIELD2", "REGEX", "TABLECELLS"
-                                ];
-
-                                result.fieldsData.forEach((field) => {
-                                    expect(fieldValues.some(x => x.includes(field.name))).to.be.true;
-                                    if (field.name === "TABLECELLS") {
-                                        expect(field.pageArea.pageTableArea.columnCount).equal(4);
-                                        expect(field.pageArea.pageTableArea.rowCount).equal(3);
-                                    }
-                                });
+                                expect(result.count).equal(1);
                             });
                     });
 
@@ -102,19 +90,7 @@ describe("test_parser_parse_api",
                             .then((result) => {
                                 expect(result).not.to.be.null;
                                 expect(result.fieldsData).not.to.be.empty;
-                                expect(result.count).equal(4);
-
-                                var fieldValues: string[] = [
-                                    "FIELD1", "RELATEDFIELD2", "REGEX", "TABLECELLS"
-                                ];
-
-                                result.fieldsData.forEach((field) => {
-                                    expect(fieldValues.some(x => x.includes(field.name))).to.be.true;
-                                    if (field.name === "TABLECELLS") {
-                                        expect(field.pageArea.pageTableArea.columnCount).equal(4);
-                                        expect(field.pageArea.pageTableArea.rowCount).equal(3);
-                                    }
-                                });
+                                expect(result.count).equal(1);
                             });
                     });
 

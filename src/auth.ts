@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,11 @@
 * SOFTWARE.
 */
 
-import request = require("request");
+import jwt = require("jsonwebtoken");
+import { RawAxiosRequestConfig } from "axios";
 import { invokeApiMethod } from "./api_client";
 import { Configuration } from "./configuration";
+import qs = require("qs");
 
 /**
  * Authentication logic for api calls
@@ -33,7 +35,7 @@ export interface IAuthentication {
     /**
      * Apply authentication settings to header and query params.
      */
-    applyToRequest(requestOptions: request.Options, configuration: Configuration): void;
+    applyToRequest(requestOptions: RawAxiosRequestConfig, configuration: Configuration): void;
 
 }
 
@@ -46,8 +48,8 @@ export class OAuth implements IAuthentication {
     /**
      * Apply authentication settings to header and query params
      */
-    public async applyToRequest(requestOptions: request.Options, configuration: Configuration): Promise<void> {
-        if (this.accessToken == null) {
+    public async applyToRequest(requestOptions: RawAxiosRequestConfig, configuration: Configuration): Promise<void> {
+        if (this.accessToken == null || !this.isTokenValid()) {
             await this._requestToken(configuration);
         }
 
@@ -59,19 +61,43 @@ export class OAuth implements IAuthentication {
     }
 
     private async _requestToken(configuration: Configuration): Promise<void> {
-        const requestOptions: request.Options = {
-            method: "POST",
-            json: true,
-            uri: configuration.apiBaseUrl + "/connect/token",
-            form: {
-                grant_type: "client_credentials",
-                client_id: configuration.appSid,
-                client_secret: configuration.appKey,
-            },
+        const requestOptions: RawAxiosRequestConfig = {
+          method: "post",
+          headers: { "content-type": "application/x-www-form-urlencoded" },
+          maxBodyLength: Infinity,
+          url: configuration.apiBaseUrl + "/connect/token",          
+          data : qs.stringify({
+                    grant_type: "client_credentials",
+                    client_id: configuration.appSid,
+                    client_secret: configuration.appKey,
+                }),
         };
-
+        
         const response = await invokeApiMethod(requestOptions, configuration, true);
-        this.accessToken = response.body.access_token;        
+        this.accessToken = response.data.access_token;
+
         return Promise.resolve();
     }
+
+    private isTokenValid() {
+        try {
+          const decodedToken = jwt.decode(this.accessToken) as jwt.JwtPayload;
+          
+          if (!decodedToken) {
+            console.log("Invalid token.");
+            return;
+          }
+          
+          const expirationTime = decodedToken.exp;
+          const currentTime = Math.floor(Date.now() / 1000);
+          
+          if (currentTime <= expirationTime) {
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          return false;
+        }
+      }      
 }
