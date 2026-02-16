@@ -26,26 +26,28 @@ import { FileInfo } from "../src/model";
  * Describes test file
  */
 export class TestFile {
-        public static PasswordProtected: TestFile = new TestFile("password-protected.docx", "words\\docx\\", "password");
-        public static FourPages: TestFile = new TestFile("four-pages.docx", "words\\docx\\");
-        public static OnePage: TestFile = new TestFile("one-page.docx", "words\\docx\\");
-        public static TemplateDocumentDocx = new TestFile("template-document.docx", "words\\docx\\");
-        public static FormattedDocument: TestFile = new TestFile("formatted-document.docx", "words\\docx\\");
-        public static EncodingDetection: TestFile = new TestFile("encoding-detection.txt", "words\\txt\\");
-        public static Zip: TestFile = new TestFile("docx.zip", "containers\\archive\\");
-        public static ZipWithEmailImagePdf: TestFile = new TestFile("zip-eml-jpg-pdf.zip", "containers\\archive\\");
-        public static JpegFile: TestFile = new TestFile("document.jpeg", "image\\jpeg\\");
-        public static ImageAndAttachment: TestFile = new TestFile("embedded-image-and-attachment.eml", "email\\eml\\");
-        public static Pdf: TestFile = new TestFile("template-document.pdf", "pdf\\");
-        public static PdfContainer: TestFile = new TestFile("PDF with attachements.pdf", "pdf\\", "password");
+        public static PasswordProtected: TestFile = new TestFile("password-protected.docx", "words/docx/", "password");
+        public static FourPages: TestFile = new TestFile("four-pages.docx", "words/docx/");
+        public static OnePage: TestFile = new TestFile("one-page.docx", "words/docx/");
+        public static TemplateDocumentDocx = new TestFile("template-document.docx", "words/docx/");
+        public static FormattedDocument: TestFile = new TestFile("formatted-document.docx", "words/docx/");
+        public static EncodingDetection: TestFile = new TestFile("encoding-detection.txt", "words/txt/");
+        public static Zip: TestFile = new TestFile("docx.zip", "containers/archive/");
+        public static ZipWithEmailImagePdf: TestFile = new TestFile("zip-eml-jpg-pdf.zip", "containers/archive/");
+        public static JpegFile: TestFile = new TestFile("document.jpeg", "image/jpeg/");
+        public static ImageAndAttachment: TestFile = new TestFile("embedded-image-and-attachment.eml", "email/eml/");
+        public static Pdf: TestFile = new TestFile("template-document.pdf", "pdf/");
+        public static PdfContainer: TestFile = new TestFile("PDF with attachements.pdf", "pdf/", "password");
 
 
-        public static Rar: TestFile = new TestFile("sample.rar", "containers\\archive\\");
-        public static Tar: TestFile = new TestFile("sample.tar", "containers\\archive\\");
-        public static Md: TestFile = new TestFile("sample.md", "words\\docx\\");
-        public static Video: TestFile = new TestFile("sample.avi", "video\\avi\\");
+        public static Rar: TestFile = new TestFile("sample.rar", "containers/archive/");
+        public static Tar: TestFile = new TestFile("sample.tar", "containers/archive/");
+        public static Md: TestFile = new TestFile("sample.md", "words/docx/");
+        public static Video: TestFile = new TestFile("sample.avi", "video/avi/");
 
-        public static NotExist: TestFile = new TestFile("file-not-exist.pdf", "folder\\");
+        public static NotExist: TestFile = new TestFile("file-not-exist.pdf", "folder/");
+
+        public static Invoice: TestFile = new TestFile("Invoice.xlsx", "cells/");
 
 
     /**
@@ -61,7 +63,7 @@ export class TestFile {
     /**
      * File password
      */
-    public password: string;
+    public password?: string;
 
     /**
      * Returns test file path
@@ -77,14 +79,15 @@ export class TestFile {
     {
         let fileInfo = new FileInfo();
         fileInfo.filePath = this.GetPath();
-        fileInfo.password = this.password;
+        if(this.password)
+            fileInfo.password = this.password;
         return fileInfo;
     }
 
     /**
      * Attachment password
      */
-    public attachmentPassword: string;
+    public attachmentPassword: string | undefined;
 
     private constructor(fileName: string, folder: string, password?: string) {
         this.fileName = fileName;
@@ -108,7 +111,8 @@ export class TestFile {
                 TestFile.PdfContainer,
                 TestFile.Rar,
                 TestFile.Tar,
-                TestFile.Md
+                TestFile.Md,
+                TestFile.Invoice
         ];
     }
 }

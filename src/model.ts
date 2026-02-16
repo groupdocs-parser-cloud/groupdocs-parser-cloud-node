@@ -2511,6 +2511,39 @@ export class TextStyle {
 }
 
 /**
+ * AI Parse options.
+ */
+export class AIParseOptions extends ParserOptions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "template",
+            baseName: "template",
+            type: "any",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(AIParseOptions.attributeTypeMap);
+    }
+
+    /**
+     * User-generated template to extract metadata from the document.
+     */
+    public template: any;
+    
+    public constructor(init?: Partial<AIParseOptions>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Barcode options.
  */
 export class BarcodesOptions extends ParserOptions {
@@ -2855,6 +2888,7 @@ const typeMap = {
             TextPage,
             TextResult,
             TextStyle,
+            AIParseOptions,
             BarcodesOptions,
             ContainerOptions,
             FileVersion,
@@ -3174,6 +3208,20 @@ export class GetInfoRequest {
     public options: InfoOptions;
     
     public constructor(options: InfoOptions) {        
+        this.options = options;
+    }
+}
+
+/**
+ * Request model for AIParse operation.
+ */
+export class AIParseRequest {
+    /**
+     * Parse options.
+     */
+    public options: AIParseOptions;
+    
+    public constructor(options: AIParseOptions) {        
         this.options = options;
     }
 }

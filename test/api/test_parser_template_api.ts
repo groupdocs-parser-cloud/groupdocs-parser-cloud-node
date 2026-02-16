@@ -31,13 +31,7 @@ import {
 } from "../../src/model";
 
 import * as TestContext from "../test_context";
-import Model = require("../../src/model");
-import Field = Model.Field;
-import FieldPosition = Model.FieldPosition;
-import RectangleModel = Model.Rectangle;
-import Table = Model.Table;
-import DetectorParameters = Model.DetectorParameters;
-import GetTemplateRequest = Model.GetTemplateRequest;
+import { Field, FieldPosition, Rectangle as RectangleModel, Table, DetectorParameters, GetTemplateRequest } from "../../src/model";
 
 
 describe("test_parser_template_api",

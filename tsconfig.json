@@ -13,11 +13,13 @@
         "lib": [
             "es5",
             "es6",
+            "DOM",
             "scripthost"
         ],
         "outDir": "lib"
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "test/**/*"
     ]
 }

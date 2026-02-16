@@ -29,6 +29,8 @@ import "mocha";
 import {
     ParseRequest,
     ParseOptions,
+    AIParseRequest,
+    AIParseOptions,
     CreateTemplateOptions,
     Template,
     CreateTemplateRequest,
@@ -38,12 +40,7 @@ import {
 
 import * as TestContext from "../test_context";
 import { TestFile } from "../test_file";
-import * as Model from "../../src/model";
-import Field = Model.Field;
-import FieldPosition = Model.FieldPosition;
-import Rectangle = Model.Rectangle;
-import Table = Model.Table;
-import DetectorParameters = Model.DetectorParameters;
+import { Field, FieldPosition, Rectangle, Table, DetectorParameters } from "../../src/model";
 
 describe("test_parser_parse_api",
     () => {
@@ -105,7 +102,7 @@ describe("test_parser_parse_api",
                         } catch
                         (error) {
                             expect(error.message).equal(
-                                "Can\'t find file located at \'folder\\file-not-exist.pdf\'.");
+                                "Can\'t find file located at \'folder/file-not-exist.pdf\'.");
                         }
                     });
             });
@@ -134,7 +131,7 @@ describe("test_parser_parse_api",
                     TestContext.getParseApi().parse(request)
                 } catch (error) {
                     expect(error.message).equal(
-                        "The specified file \'image\\jpeg\\document.jpeg\' has type which is not currently supported.");
+                        "The specified file \'image/jpeg/document.jpeg\' has type which is not currently supported.");
                 }
             });
 
@@ -150,9 +147,24 @@ describe("test_parser_parse_api",
                     TestContext.getParseApi().parse(request)
                 } catch (error) {
                     expect(error.message).equal(
-                        "Password provided for file \'words\\docx\\password-protected.docx\' is incorrect.");
+                        "Password provided for file \'words/docx/password-protected.docx\' is incorrect.");
                 }
             });
+    });
+
+    it("TestAIParse", async () => {
+        const aiOptions = new AIParseOptions();
+        aiOptions.fileInfo = TestFile.Invoice.ToFileInfo();
+        aiOptions.template = {
+            InvoiceNum: "",
+            Date: "",
+            Email: ""
+        };
+        const request = new AIParseRequest(aiOptions);
+        const result = await TestContext.getParseApi().aIParse(request);
+        expect(result).to.not.be.null;
+        const invoiceNum = result["InvoiceNum"];
+        expect(invoiceNum).to.not.be.undefined;
     });
 
 class Setup {

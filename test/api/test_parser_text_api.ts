@@ -165,7 +165,7 @@ describe("test_parser_text_api",
                             TestContext.getParseApi().text(request)
                         } catch (error) {
                             expect(error.message).equal(
-                                "Can\'t find file located at \'folder\\file-not-exist.pdf\'.");
+                                "Can\'t find file located at \'folder/file-not-exist.pdf\'.");
                         }
                     });
 
@@ -180,7 +180,7 @@ describe("test_parser_text_api",
                             TestContext.getParseApi().text(request)
                         } catch (error) {
                             expect(error.message).equal(
-                                "The specified file \'image\\jpeg\\document.jpeg\' has type which is not currently supported.");
+                                "The specified file \'image/jpeg/document.jpeg\' has type which is not currently supported.");
                         }
                     });
 
@@ -196,7 +196,7 @@ describe("test_parser_text_api",
                             TestContext.getParseApi().text(request)
                         } catch (error) {
                             expect(error.message).equal(
-                                "Password provided for file \'words\\docx\\password-protected.docx\' is incorrect.");
+                                "Password provided for file \'words/docx/password-protected.docx\' is incorrect.");
                         }
                     });
             });

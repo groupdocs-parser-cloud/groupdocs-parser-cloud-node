@@ -606,6 +606,36 @@ export class ParseApi {
     }
 
     /**
+     * Extract document data using AI and given template.
+     * @param requestObj contains request parameters
+     */
+    public async aIParse(requestObj: model.AIParseRequest): Promise<any> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling aIParse.');
+        }
+
+        const localVarPath = this.configuration.getServerUrl() + "/parser/aiparse";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.options' is not null or undefined
+        if (requestObj.options === null || requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was null or undefined when calling aIParse.');
+        }
+        
+        const requestOptions: axios.AxiosRequestConfig = {
+            method: "POST",
+            params: queryParameters,
+            url: localVarPath,
+            responseType: "json",
+            data: Serializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "AIParseOptions" : requestObj.options.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  Serializer.deserialize(response.data, "any");
+        return Promise.resolve(result);
+    }
+
+    /**
      * Extract barcodes from document.
      * @param requestObj contains request parameters
      */

@@ -101,7 +101,7 @@ describe("test_parser_info_api",
                             TestContext.getInfoApi().getInfo(request)
                         } catch (error) {
                             expect(error.message).equal(
-                                "Can\'t find file located at \'folder\\file-not-exist.pdf\'.");
+                                "Can\'t find file located at \'folder/file-not-exist.pdf\'.");
                         }
                     });
 
@@ -115,7 +115,7 @@ describe("test_parser_info_api",
                             TestContext.getInfoApi().getInfo(request)
                         } catch (error) {
                             expect(error.message).equal(
-                                "Password provided for file \'words\\docx\\password-protected.docx\' is incorrect.");
+                                "Password provided for file \'words/docx/password-protected.docx\' is incorrect.");
                         }
                     });
             });

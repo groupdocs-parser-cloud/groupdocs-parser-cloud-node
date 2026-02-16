@@ -114,7 +114,7 @@ describe("test_parser_container_api",
                         }
                         catch (e) {
                             expect(e.message).equal(
-                                "Can\'t find file located at \'folder\\file-not-exist.pdf\'.");
+                                "Can\'t find file located at \'folder/file-not-exist.pdf\'.");
                         }
                     });
 
@@ -127,7 +127,7 @@ describe("test_parser_container_api",
                             TestContext.getInfoApi().container(request);
                         } catch (e) {
                             expect(e.message).equal(
-                                "Password provided for file \'video\\avi\\sample.avi\' is incorrect.");
+                                "Password provided for file \'video/avi/sample.avi\' is incorrect.");
                         }
                     });
 
